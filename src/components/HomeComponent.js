@@ -1,0 +1,55 @@
+import React from 'react';
+import { Image } from 'react-native';
+import {
+    createMaterialBottomTabNavigator
+} from 'react-navigation-material-bottom-tabs';
+import CalendarDayContainer from '../container/CalendarDayContainer';
+import CalendarMonthContainer from '../container/CalendarMonthContainer';
+import { icons, colors } from '../assets';
+import allSchemas from '../container/allSchemas';
+import TodoListComponent from './TodoListComponent';
+const tabNavigations = createMaterialBottomTabNavigator(
+    {
+        Day: {
+            screen: CalendarDayContainer,
+            navigationOptions: {
+                title: 'Lịch ngày',
+                tabBarIcon: ({ tintColor, focused }) => (
+                    <Image
+                        tintColor={tintColor}
+                        source={icons.calendarDay}
+                    />
+                )
+            }
+        },
+        Month: {
+            screen: CalendarMonthContainer,
+            navigationOptions: {
+                title: 'Lịch tháng',
+                tabBarIcon: ({ tintColor, focused }) => (
+                    <Image
+                        tintColor={tintColor}
+                        source={icons.calendarMonth}
+                    />
+                )
+            }
+        },
+        TodoList: {
+            screen: TodoListComponent,
+            navigationOptions: {
+                title: 'Ghi chú',
+                tabBarIcon: ({ tintColor, focused }) => (
+                    <Image
+                        tintColor={tintColor}
+                        source={icons.calendarTodoList}
+                    />
+                )
+            }
+        }
+    },
+    {
+        barStyle: { backgroundColor: colors.red },
+        shifting: true,
+    });
+
+export default tabNavigations;
